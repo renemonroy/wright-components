@@ -1,0 +1,23 @@
+{
+  "name": "components",
+  "version": "0.1.0",
+  "description": "Used by preact-init to start new Preact projects from the simplest starting point.",
+  "private": true,
+  "scripts": {
+    "start": "preact-roller start",
+    "build": "preact-roller build"
+  },
+  "dependencies": {
+    "core-js": "^2.4.1",
+    "es6-object-assign": "^1.1.0",
+    "preact": "^8.1.0",
+    "preact-compat": "^3.16.0",
+    "preact-deep-force-update": "^0.1.0"
+  },
+  "devDependencies": {
+    "preact-roller": "*"
+  },
+  "eslintConfig": {
+    "extends": "./node_modules/preact-roller/config/.eslintrc"
+  }
+}
