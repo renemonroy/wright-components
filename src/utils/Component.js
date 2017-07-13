@@ -29,7 +29,7 @@ class UIComponent {
     }
     this.children.set(component.data.key, component);
     component.setParent(this);
-    return this;
+    return this.children.get(component.data.key);
   }
 
   removeChild(childRef) {

@@ -7,17 +7,10 @@ document.documentElement.appendChild($wrightInterface);
 
 const app = new Root({ key: 'root' }, true).render(shadowHost);
 
-app.addChild(new Message({
+const msg = app.addChild(new Message({
   key: 'msg',
   title: 'Inject',
   description: 'New injections were done.',
-}));
+})).fadeIn();
 
-app.children.get('msg').fadeIn();
-
-setTimeout(() => {
-  app.children.get('msg').fadeOut();
-  setTimeout(() => {
-    console.log(app);
-  }, 2000);
-}, 2000);
+setTimeout(() => { msg.fadeOut(); }, 2000);
