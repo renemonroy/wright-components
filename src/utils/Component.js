@@ -11,10 +11,14 @@ class UIComponent {
     if (!data.key) {
       throw new Error('All components need a \'key\'');
     }
+    this._isShadowTemplate = isShadowTemplate;
     this.children = new Map();
     this.parent = null;
     this.data = Object.assign({}, defaultData, data);
     temp.insertAdjacentHTML('afterbegin', this.template.trim());
+    if (isShadowTemplate) {
+      this.shadowElement = temp.firstChild.content;
+    }
     this.element = isShadowTemplate ? getFirstDiv(temp.firstChild) : temp.firstChild;
     temp = null;
   }
@@ -57,18 +61,19 @@ class UIComponent {
   }
 
   render(element, position) {
+    const el = this._isShadowTemplate ? this.shadowElement : this.element;
     switch (position) {
       case 'beforebegin':
-        element.parentNode.insertBefore(this.element, element);
+        element.parentNode.insertBefore(el, element);
         break;
       case 'afterbegin':
-        element.insertBefore(this.element, element.firstChild);
+        element.insertBefore(el, element.firstChild);
         break;
       case 'afterend':
-        element.parentNode.insertBefore(this.element, element.nextSibling);
+        element.parentNode.insertBefore(el, element.nextSibling);
         break;
       default:
-        element.appendChild(this.element);
+        element.appendChild(el);
         break;
     }
     return this;
