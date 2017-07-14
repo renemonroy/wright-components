@@ -3,7 +3,7 @@ const getFirstDiv = el => (
 );
 
 class UIComponent {
-  constructor(data = {}, isShadowTemplate = false) {
+  constructor(data = {}) {
     const defaultData = {
       key: null,
     };
@@ -11,15 +11,13 @@ class UIComponent {
     if (!data.key) {
       throw new Error('All components need a \'key\'');
     }
-    this._isShadowTemplate = isShadowTemplate;
     this.children = new Map();
     this.parent = null;
     this.data = Object.assign({}, defaultData, data);
     temp.insertAdjacentHTML('afterbegin', this.template.trim());
-    if (isShadowTemplate) {
-      this.shadowElement = temp.firstChild.content;
-    }
-    this.element = isShadowTemplate ? getFirstDiv(temp.firstChild) : temp.firstChild;
+    this._isShadowTemplate = temp.firstChild.tagName === 'TEMPLATE';
+    this.shadowElement = this._isShadowTemplate ? temp.firstChild.content : null;
+    this.element = this._isShadowTemplate ? getFirstDiv(temp.firstChild) : temp.firstChild;
     temp = null;
   }
 

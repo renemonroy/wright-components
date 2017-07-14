@@ -4,7 +4,7 @@ import spring from '../utils/spring';
 
 export default decorate({
 
-  animate(defaultStyle, style, handleUpdate, handleRest) {
+  animate(defaultStyle, style, handleUpdate, handleRest = () => {}) {
     if (this.animation) {
       this.animation.stop();
     }

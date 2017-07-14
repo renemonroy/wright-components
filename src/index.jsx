@@ -5,10 +5,12 @@ const $wrightInterface = document.createElement('wright-interface');
 const shadowHost = $wrightInterface.attachShadow({ mode: 'open' });
 document.documentElement.appendChild($wrightInterface);
 
-const app = new Root({ key: 'root' }, true).render(shadowHost);
+const app = new Root({ key: 'root' }).render(shadowHost);
 
-app.addChild(new Message({
+const msg = app.addChild(new Message({
   key: 'msg',
   title: 'Inject',
   description: 'New injections were done.',
-})).fadeIn();
+})).show();
+
+console.log(msg);

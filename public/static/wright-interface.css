@@ -1,7 +1,31 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 #root {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   height: 0;
   width: 0;
+}
+
+.ui-message {
+  background-color:#111;
+  border-radius: 0 0 5px 5px;
+  color: #fff;
+  padding: .3rem .7rem .5rem;
+  position: absolute;
+  right: calc(-100vw + 0.7rem);
+  white-space: nowrap;
+}
+
+.ui-message h3 {
+  font-size: 18px;
+}
+
+.ui-message p {
+  font-size: 14px;
 }
